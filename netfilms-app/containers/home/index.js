@@ -4,11 +4,19 @@ import Movies from "@/mocks/movies.json"
 import Genres from "@/mocks/genres.json"
 import Categories from '@/components/categoires'
 import MoviesSection from '@/components/movies-section'
-const HomeContainer = () => {
+const HomeContainer = ({ selectedCategory }) => {
     return (
         <div>
-            <FeaturedMovie movie={Movies.results[1]} />
+            <FeaturedMovie movie={Movies.results[0]} />
             <Categories categories={Genres.genres.slice(0, 5)} />
+            {
+                selectedCategory.movies.length > 0 &&
+                <MoviesSection
+                    title={Genres.genres.find((item) => `${item.id}` === selectedCategory.id)?.name}
+                    movies={selectedCategory.movies}
+                />
+            }
+
             <MoviesSection title="Popular Films" movies={Movies.results.slice(1, 7)} />
             <MoviesSection title="Your Favorites" movies={Movies.results.slice(1, 7)} />
         </div>
