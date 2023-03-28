@@ -4,9 +4,11 @@ import { Inter } from 'next/font/google'
 import HomeContainer from '@/containers/home'
 import Movies from "@/mocks/movies.json"
 
-
-const HomePage = ({ params }) => {
-
+async function delay(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+const HomePage = async ({ params }) => {
+  await delay(20000)
   let selectedCategory;
   if (params.category?.length > 0) {
     selectedCategory = true
